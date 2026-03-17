@@ -119,7 +119,7 @@ From predictions:
 Overall delay risk: 34.91%
 This aligns well with real-world expectations.
 
-Trade-offs:
+#### Trade-offs:
 Model favors interpretability and robustness over extreme accuracy.
 Can be further tuned for improvement.
 
@@ -129,14 +129,14 @@ Can be further tuned for improvement.
 MLflow was used to manage the machine learning lifecycle.
 
 During model training:
-Parameters such as number of trees were logged.
-Evaluation metric (AUC) was recorded.
-Each run was tracked for reproducibility.
+- Parameters such as number of trees were logged.
+- Evaluation metric (AUC) was recorded.
+- Each run was tracked for reproducibility.
 
 This allows:
-Comparing different model runs.
-Tracking improvements.
-Managing model versions.
+- Comparing different model runs.
+- Tracking improvements.
+- Managing model versions.
 
 This ensures transparency and reproducibility in the ML pipeline.
 
@@ -145,18 +145,18 @@ This ensures transparency and reproducibility in the ML pipeline.
 ## Data Pipeline ↔ AI Workflow Integration:
 The project integrates data engineering and machine learning seamlessly.
 
-Data is ingested and stored in Bronze layer.
-Cleaned and transformed in Silver layer.
-Feature engineered in Gold layer.
-ML model consumes Gold data.
-Predictions are written back to Gold layer.
+- Data is ingested and stored in Bronze layer.
+- Cleaned and transformed in Silver layer.
+- Feature engineered in Gold layer.
+- ML model consumes Gold data.
+- Predictions are written back to Gold layer.
 
 Final prediction table:   supply_chain_ai.gold.shipping_delay_predictions
 
 This ensures:
-End-to-end automation.
-Reusability of datasets.
-Consistent data flow.
+- End-to-end automation.
+- Reusability of datasets.
+- Consistent data flow.
 
 ----
 
@@ -180,89 +180,4 @@ High-risk shipment identification (prediction ≥ 0.7) enables:
 
 
 
-
-
-
-
-
-### Key observations from raw data:
-- Mental health impact is behavior-driven, not caused by a single variable.
-- Late-night usage and reduced sleep appear frequently with higher depression scores.
-- Passive content consumption and social comparison are common anxiety triggers.
-
-----
-
-## Feature Engineering (Silver Layer) : 
-Cleaned raw data by: Removing duplicates and handling missing values in critical numerical fields.
-Created behavioral risk features to translate raw usage into meaningful signals:
-Engineered Features:
-- High_Screen_Time: Flagged users spending more than 6 hours daily on screens.
-- Sleep_Deprived: Identified users sleeping less than 6 hours.
-- LateNight_Sleep_Risk: Combined late-night activity with sleep deprivation.
-- Passive_Usage_Risk: Captured risk from passive scrolling behavior.
-- Social_Comparison_Risk: Represented exposure to comparison-driven content.
-- High_Mental_Health_Risk (Target): Flagged users with moderate-to-severe anxiety or depression scores.
-These features converted raw digital behavior into interpretable mental health risk signals.
-
-----
-
-## AI Innovation & Insight Generation:
-### What makes this project “AI” and not just SQL?
-- Instead of only reporting mental health statistics, I designed behavioral risk signals from raw social media usage data.
-- I transformed daily habits (screen time, sleep, late-night usage, activity type) into risk indicators.
-These features helped uncover hidden behavioral patterns, not obvious from raw data alone.
-
-### Key AI-driven insights generated:
-- High screen time + sleep deprivation strongly correlates with higher anxiety and depression scores.
-- Late-night social media usage amplifies mental health risk.
-- Passive consumption and social comparison increase anxiety levels.
-- Gender-based risk distribution highlights different behavioral impacts.
-
-Innovation here is feature engineering + insight generation from behavior, not just prediction.
-
-----
-
-## Training, Evaluation & Metrics:
-### How I validated the model?
-Model training and experiments were tracked using Mlflow and I logged key evaluation metrics:
-- Accuracy –Mental health predictions require balanced evaluation.
-- AUC –AUC helps avoid misleading accuracy in imbalanced datasets.
-- Confusion Matrix – false positives vs false negatives- supports explainability and trust.
-
-### Outcome:
-- Model achieved stable performance.
-- Predictions stored in a Gold prediction table.
-- Metrics and model version fully reproducible via Mlflow.
-
-----
-
-## Database ↔ AI Workflow (Lakehouse Integration):
-Data flows through:
-- Bronze → Raw ingestion (Delta).
-- Silver → Cleaned & feature-engineered data.
-- Gold → Analytics tables & ML-ready datasets.
-AI integration: ML model reads directly from Gold Delta tables.
-Predictions written back to Gold prediction table.
-Same data serves: SQL Analytics | Dashboards | ML training | Model inference.
-
-This avoids data duplication and ensures single source of truth.
-
-----
-
-## Business Impact & Practical Use:
-### Why this project matters in the real world?
-- Enables early detection of mental health risk based on behavior and helps platforms:
-- Identify high-risk users proactively.
-- Design targeted well-being interventions.
-- Monitor impact of platform usage patterns.
-
-### Practical applications:
-- Mental health monitoring dashboards.
-- Risk-based user segmentation.
-- Responsible AI use in social platforms.
-
-### Scalable & production-ready:
-- Automated jobs.
-- Governed data access via Unity Catalog.
-- ML lifecycle managed with Mlflow.
 
