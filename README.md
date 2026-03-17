@@ -6,7 +6,20 @@
 ----
 ## Problem Definition & AI Framing:
 The objective of this project is to predict whether a shipment will be delayed or not, making it a binary classification problem. The system takes structured shipment data as input and produces a delay risk prediction as output.
-<img width="5191" height="105" alt="image" src="https://github.com/user-attachments/assets/0447d022-a258-4096-8352-96893bfaa0b8" />
+In modern supply chain operations, shipment delays are a major challenge that directly impact customer satisfaction, operational efficiency, and overall business cost. Delays can occur due to multiple interacting factors such as shipment mode, warehouse efficiency, product characteristics, and external conditions like weather.
+
+Traditional rule-based systems are not sufficient here because:
+They cannot capture complex interactions between variables.
+They fail to adapt to changing patterns.
+They lack scalability and predictive capability.
+This is why a machine learning approach is used.
+
+The success criteria for this system include:
+Achieving a reliable prediction performance. (AUC ~0.74 achieved)
+Generating actionable insights for business users.
+Identifying high-risk shipments proactively.
+
+This problem is highly relevant in real-world logistics and operations, making it a practical and impactful AI use case.
 
 
 ### Why AI (Not Rules)?    Because:
