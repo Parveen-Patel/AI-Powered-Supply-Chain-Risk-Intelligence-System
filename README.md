@@ -9,15 +9,15 @@ In modern supply chain operations, shipment delays are a major challenge that di
 The objective of this project is to predict whether a shipment will be delayed or not, making it a binary classification problem. The system takes structured shipment data as input and produces a delay risk prediction as output.
 
 Traditional rule-based systems are not sufficient here because:
-They cannot capture complex interactions between variables.
-They fail to adapt to changing patterns.
-They lack scalability and predictive capability.
+- They cannot capture complex interactions between variables.
+- They fail to adapt to changing patterns.
+- They lack scalability and predictive capability.
 This is why a machine learning approach is used.
 
 The success criteria for this system include:
-Achieving a reliable prediction performance. (AUC ~0.74 achieved)
-Generating actionable insights for business users.
-Identifying high-risk shipments proactively.
+- Achieving a reliable prediction performance. (AUC ~0.74 achieved)
+- Generating actionable insights for business users.
+- Identifying high-risk shipments proactively.
 
 This problem is highly relevant in real-world logistics and operations, making it a practical and impactful AI use case.
 
@@ -33,10 +33,10 @@ The datasets were originally available in multiple CSV formats.
 The weather dataset consisted of separate files for each attribute (temperature, humidity, pressure, etc.), organized across time and cities.
 
 To prepare the data for analysis:
-Multiple CSV files were ingested into the system.
-Data was standardized into a unified schema.
-Time-based alignment was ensured.
-Structured tables were created for downstream processing.
+- Multiple CSV files were ingested into the system.
+- Data was standardized into a unified schema.
+- Time-based alignment was ensured.
+- Structured tables were created for downstream processing.
 This step reflects real-world data engineering challenges, where data is fragmented and requires transformation before it can be used for analytics or machine learning.
 
 ----
@@ -47,9 +47,9 @@ In the Bronze layer, raw data is ingested without transformations to preserve or
 In the Silver layer, data is cleaned, standardized, and transformed. This involves restructuring datasets, handling inconsistencies, and preparing data for downstream processing.
 In the Gold layer, the data is enriched with business logic and feature engineering. 
 This layer contains:
-ML-ready datasets.
-Prediction outputs.
-Aggregated analytics tables for dashboards.
+- ML-ready datasets.
+- Prediction outputs.
+- Aggregated analytics tables for dashboards.
 The pipeline ensures clear separation between raw, processed, and analytical data, improving maintainability and scalability.
 All datasets are stored as managed tables in Databricks, ensuring efficient querying and integration across notebooks.
 
@@ -58,21 +58,21 @@ All datasets are stored as managed tables in Databricks, ensuring efficient quer
 
 ## Data Understanding & Feature Engineering:
 The dataset consists of shipment-level information such as:
-Customer interactions. (customer care calls, ratings)
-Product attributes. (cost, importance, weight)
-Operational details. (warehouse block, shipment mode)
+- Customer interactions. (customer care calls, ratings)
+- Product attributes. (cost, importance, weight)
+- Operational details. (warehouse block, shipment mode)
 The target variable is whether the shipment was delivered on time or delayed.
 
 Feature engineering plays a critical role in improving model performance. 
 In this project:
-Categorical variables like shipment mode, warehouse block, and product importance were encoded using StringIndexer.
-A synthetic weather severity index was created to simulate external disruptions.
-All features were assembled into a single vector for machine learning.
+- Categorical variables like shipment mode, warehouse block, and product importance were encoded using StringIndexer.
+- A synthetic weather severity index was created to simulate external disruptions.
+- All features were assembled into a single vector for machine learning.
 
 Data preprocessing included:
-Selecting relevant columns.
-Converting categorical to numerical.
-Structuring the dataset for ML pipeline.
+- Selecting relevant columns.
+- Converting categorical to numerical.
+- Structuring the dataset for ML pipeline.
 This ensures the data is clean, consistent, and suitable for modeling.
 
 ----
@@ -80,14 +80,14 @@ This ensures the data is clean, consistent, and suitable for modeling.
 ## Delta Lake Implementation:
 All data layers are implemented using Delta tables, enabling reliable and scalable data management.
 Key features used:
-ACID transactions ensure data consistency during read/write operations.
-Schema enforcement prevents incorrect data ingestion.
-Time travel capability allows access to previous versions of data.
-Overwrite mode ensures clean updates during pipeline runs.
+- ACID transactions ensure data consistency during read/write operations.
+- Schema enforcement prevents incorrect data ingestion.
+- Time travel capability allows access to previous versions of data.
+- Overwrite mode ensures clean updates during pipeline runs.
 
 Additionally, performance optimization techniques such as:
-Table optimization.
-Efficient storage format.
+- Table optimization.
+- Efficient storage format.
 can be applied for large-scale scenarios.
 This makes the system production-ready and aligned with modern data engineering standards.
 
@@ -96,32 +96,32 @@ This makes the system production-ready and aligned with modern data engineering 
 ## Model Selection & Technical Reasoning:
 The problem is framed as a binary classification task, where the goal is to predict whether a shipment will be delayed.
 A Random Forest Classifier was selected for this task because:
-It handles both numerical and categorical features effectively.
-It captures non-linear relationships.
-It is robust to noise and overfitting.
+- It handles both numerical and categorical features effectively.
+- It captures non-linear relationships.
+- It is robust to noise and overfitting.
 
 The model also provides feature importance, which helps in understanding key drivers of delay: Discount offered and weight of shipment are the most influential features.
 
-Limitations:
-Weather data is simulated, so its impact is limited.
-Model performance can improve with real-world external data.
+#### Limitations:
+- Weather data is simulated, so its impact is limited.
+- Model performance can improve with real-world external data.
 
 ----
 
 ## Training, Evaluation & Metrics:
 The dataset was split into training and testing sets using an 80/20 ratio:
-Training: 8865 records
-Testing: 2134 records
+- Training: 8865 records
+- Testing: 2134 records
 The model was evaluated using AUC (Area Under Curve), which is suitable for binary classification: Achieved AUC Score: 0.7399
 
 This indicates that the model has a good ability to distinguish between delayed and non-delayed shipments.
-From predictions:
-Overall delay risk: 34.91%
-This aligns well with real-world expectations.
+#### From predictions:
+- Overall delay risk: 34.91%
+- This aligns well with real-world expectations.
 
 #### Trade-offs:
-Model favors interpretability and robustness over extreme accuracy.
-Can be further tuned for improvement.
+- Model favors interpretability and robustness over extreme accuracy.
+- Can be further tuned for improvement.
 
 ----
 
@@ -151,7 +151,7 @@ The project integrates data engineering and machine learning seamlessly.
 - ML model consumes Gold data.
 - Predictions are written back to Gold layer.
 
-Final prediction table:   supply_chain_ai.gold.shipping_delay_predictions
+#### Final prediction table:   supply_chain_ai.gold.shipping_delay_predictions
 
 This ensures:
 - End-to-end automation.
