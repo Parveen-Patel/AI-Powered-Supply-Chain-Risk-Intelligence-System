@@ -6,6 +6,7 @@
 ----
 ## Problem Definition & AI Framing:
 In modern supply chain operations, shipment delays are a major challenge that directly impact customer satisfaction, operational efficiency, and overall business cost. Delays can occur due to multiple interacting factors such as shipment mode, warehouse efficiency, product characteristics, and external conditions like weather.
+----
 The objective of this project is to predict whether a shipment will be delayed or not, making it a binary classification problem. The system takes structured shipment data as input and produces a delay risk prediction as output.
 
 Traditional rule-based systems are not sufficient here because:
