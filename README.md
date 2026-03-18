@@ -88,7 +88,7 @@ Key features used:
 Additionally, performance optimization techniques such as:
 - Table optimization.
 - Efficient storage format.
-can be applied for large-scale scenarios.
+- can be applied for large-scale scenarios.
 This makes the system production-ready and aligned with modern data engineering standards.
 
 ----
